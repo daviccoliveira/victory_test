@@ -1,0 +1,152 @@
+<?xml version="1.0" ?>
+<robot name="elir_test" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<xacro:property name="M_PI" value="3.141592" />
+
+  <material name="purple">
+    <color rgba="${153/255} ${90/255} ${255/255} 1.0"/>
+  </material>
+
+  <material name="blue">
+    <color rgba="${90/255} ${129/255} ${255/255} 1.0"/>
+  </material>
+
+  <material name="light_blue">
+    <color rgba="${90/255} ${255/255} ${217/255} 1.0"/>
+  </material>
+  
+  <!-- <link name="base_link">
+  </link>
+
+  <joint name="world_base_joint" type="fixed">
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <parent link="base_link"/>
+    <child link="victory_link0"/>
+  </joint> -->
+
+    <link name="victory_link0">
+    <!-- This visual represents the base body-->
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.2"/>
+      </geometry>
+      <material name="purple"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.02" radius="0.2"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0"/>
+    </collision>
+    </link>
+
+    <joint name="joint_0" type="revolute">
+      <parent link="victory_link0"/>
+      <child link="victory_link1"/>
+      <origin rpy="0 0 0" xyz="0 0 0.025"/>
+      <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="victory_link1">
+      <!-- This visual represents the base body-->
+    <visual>
+      <geometry>
+        <cylinder length="0.3" radius="0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.15"/>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.2" radius="0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.1"/>
+    </collision>
+    </link>
+
+    <joint name="joint_1" type="revolute">
+      <parent link="victory_link1"/>
+      <child link="victory_link2"/>
+      <origin rpy="0 0 0" xyz="0 0 0.3"/>
+      <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="victory_link2">
+      <!-- This visual represents the base body-->
+    <visual>
+      <geometry>
+        <cylinder length="0.3" radius="0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.15"/>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.2" radius="0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.1"/>
+    </collision>
+    </link>
+
+    <joint name="joint_2" type="revolute">
+      <parent link="victory_link2"/>
+      <child link="victory_link3"/>
+      <origin rpy="0 0 0" xyz="0 0 0.3"/>
+      <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="victory_link3">
+      <!-- This visual represents the base body-->
+    <visual>
+      <geometry>
+        <cylinder length="0.3" radius="0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.15"/>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.2" radius="0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.1"/>
+    </collision>
+    </link>
+
+    <!-- <joint name="joint_ref" type="fixed">
+      <parent link="victory_link3"/>
+      <child link="victory_ref"/>
+      <origin rpy="0 0 0" xyz="0 0 ${0.3}"/>
+      <axis xyz="0 0 0"/>
+    </joint>
+    <link name="victory_ref"/> -->
+
+
+    <joint name="joint_hand" type="fixed">
+      <parent link="victory_link3"/>
+      <child link="victory_hand"/>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+
+      <axis xyz="1 0 0"/>
+    </joint>
+    <link name="victory_hand">
+    <visual>
+      <geometry>
+        <!-- <mesh filename="package://victory_description/meshes/Hand_Victory.stl" scale="0.002 0.002 0.002"/> -->
+        <cylinder length="0.2" radius="0.01"/>
+      </geometry>
+      <material name="light_blue"/>
+      <origin rpy="0 0 0" xyz="0.015 0.0 ${0.6}"/>
+    </visual>
+    <!-- this collision is for the front f1 claw unit -->
+    <collision>
+      <geometry>
+        <cylinder length="0.2" radius="0.01"/>
+        <!-- <mesh filename="package://victory_description/meshes/Hand_Victory.stl" scale="0.002 0.002 0.002" /> -->
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 ${0.6}"/>
+    </collision>
+    </link> 
+
+</robot>
