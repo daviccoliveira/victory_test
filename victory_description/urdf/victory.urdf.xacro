@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<robot name="elir_test" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="victory" xmlns:xacro="http://www.ros.org/wiki/xacro">
 <xacro:property name="M_PI" value="3.141592" />
 
   <material name="purple">
@@ -114,21 +114,22 @@
     </collision>
     </link>
 
-    <!-- <joint name="joint_ref" type="fixed">
+    <joint name="joint_ref" type="fixed">
       <parent link="victory_link3"/>
       <child link="victory_ref"/>
       <origin rpy="0 0 0" xyz="0 0 ${0.3}"/>
       <axis xyz="0 0 0"/>
     </joint>
-    <link name="victory_ref"/> -->
+    
+    <link name="victory_ref"/>
 
 
     <joint name="joint_hand" type="fixed">
-      <parent link="victory_link3"/>
+      <parent link="victory_ref"/>
       <child link="victory_hand"/>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
 
-      <axis xyz="1 0 0"/>
+      <axis xyz="0.1 0 0"/>
     </joint>
     <link name="victory_hand">
     <visual>
@@ -137,7 +138,7 @@
         <cylinder length="0.2" radius="0.01"/>
       </geometry>
       <material name="light_blue"/>
-      <origin rpy="0 0 0" xyz="0.015 0.0 ${0.6}"/>
+      <origin rpy="0 0 0" xyz="0.00 0.0 ${0.405}"/>
     </visual>
     <!-- this collision is for the front f1 claw unit -->
     <collision>

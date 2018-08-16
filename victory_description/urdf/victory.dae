@@ -4,14 +4,14 @@
 		<contributor>
 			<authoring_tool>URDF Collada Writer</authoring_tool>
 		</contributor>
-		<created>2018-07-26T10:49:46.000000</created>
-		<modified>2018-07-26T10:49:46.000000</modified>
+		<created>2018-08-16T09:29:33.000000</created>
+		<modified>2018-08-16T09:29:33.000000</modified>
 		<unit/>
 		<up_axis>Z_UP</up_axis>
 	</asset>
 	<library_visual_scenes id="vscenes">
 		<visual_scene id="vscene" name="URDF Visual Scene">
-			<node id="visual0" name="elir_test" sid="visual0">
+			<node id="visual0" name="victory" sid="visual0">
 				<node id="vkmodel0_node1" name="victory_link0" sid="node1">
 					<translate>0 0 0</translate>
 					<rotate>1 0 0 0</rotate>
@@ -67,21 +67,30 @@
 										</technique_common>
 									</bind_material>
 								</instance_geometry>
-								<node id="vkmodel0_node0" name="victory_hand" sid="node0">
+								<node id="vkmodel0_node5" name="victory_ref" sid="node5">
 									<translate>-0 -0 -0.15</translate>
 									<rotate>1 0 0 0</rotate>
+									<translate>0 0 0.3</translate>
+									<rotate>1 0 0 0</rotate>
+									<rotate sid="node_joint_ref_axis0">0 0 0 0</rotate>
 									<translate>0 0 0</translate>
 									<rotate>1 0 0 0</rotate>
-									<rotate sid="node_joint_hand_axis0">0 0 0 0</rotate>
-									<translate>0.015 0 0.6</translate>
-									<rotate>1 0 0 0</rotate>
-									<instance_geometry url="#gkmodel0_victory_hand_geom0">
-										<bind_material>
-											<technique_common>
-												<instance_material symbol="mat0" target="#gkmodel0_victory_hand_geom0_mat"/>
-											</technique_common>
-										</bind_material>
-									</instance_geometry>
+									<node id="vkmodel0_node0" name="victory_hand" sid="node0">
+										<translate>-0 -0 -0</translate>
+										<rotate>1 0 0 0</rotate>
+										<translate>0 0 0</translate>
+										<rotate>1 0 0 0</rotate>
+										<rotate sid="node_joint_hand_axis0">0 0 0 0</rotate>
+										<translate>0 0 0.405</translate>
+										<rotate>1 0 0 0</rotate>
+										<instance_geometry url="#gkmodel0_victory_hand_geom0">
+											<bind_material>
+												<technique_common>
+													<instance_material symbol="mat0" target="#gkmodel0_victory_hand_geom0_mat"/>
+												</technique_common>
+											</bind_material>
+										</instance_geometry>
+									</node>
 								</node>
 							</node>
 						</node>
@@ -372,7 +381,7 @@
 		</material>
 	</library_materials>
 	<library_kinematics_models id="kmodels">
-		<kinematics_model id="kmodel0" name="elir_test">
+		<kinematics_model id="kmodel0" name="victory">
 			<technique_common>
 				<joint name="joint_0" sid="joint_0">
 					<revolute sid="axis0">
@@ -410,6 +419,15 @@
 						</limits>
 					</revolute>
 				</joint>
+				<joint name="joint_ref" sid="joint_ref">
+					<revolute sid="axis0">
+						<axis>0 0 0</axis>
+						<limits>
+							<min>0</min>
+							<max>0</max>
+						</limits>
+					</revolute>
+				</joint>
 				<link sid="victory_link0" name="victory_link0">
 					<attachment_full joint="kmodel0/joint_0">
 						<translate>0 0 0.025</translate>
@@ -423,10 +441,16 @@
 										<translate>0 0 0.3</translate>
 										<rotate>1 0 0 0</rotate>
 										<link sid="victory_link3" name="victory_link3">
-											<attachment_full joint="kmodel0/joint_hand">
-												<translate>0 0 0</translate>
+											<attachment_full joint="kmodel0/joint_ref">
+												<translate>0 0 0.3</translate>
 												<rotate>1 0 0 0</rotate>
-												<link sid="victory_hand" name="victory_hand"/>
+												<link sid="victory_ref" name="victory_ref">
+													<attachment_full joint="kmodel0/joint_hand">
+														<translate>0 0 0</translate>
+														<rotate>1 0 0 0</rotate>
+														<link sid="victory_hand" name="victory_hand"/>
+													</attachment_full>
+												</link>
 											</attachment_full>
 										</link>
 									</attachment_full>
@@ -469,6 +493,12 @@
 					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_joint_hand_axis0_value">
 						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_joint_hand_axis0_value</SIDREF>
 					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_joint_ref_axis0">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_joint_ref_axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_motion_robot0_kinematics_kmodel0_inst_joint_ref_axis0_value">
+						<SIDREF>robot0_kinematics/robot0_kinematics_kmodel0_inst_joint_ref_axis0_value</SIDREF>
+					</newparam>
 				</instance_articulated_system>
 				<technique_common>
 					<axis_info axis="robot0_kinematics/axis_info_inst0">
@@ -496,6 +526,7 @@
 						</acceleration>
 					</axis_info>
 					<axis_info axis="robot0_kinematics/axis_info_inst3"/>
+					<axis_info axis="robot0_kinematics/axis_info_inst4"/>
 				</technique_common>
 			</motion>
 		</articulated_system>
@@ -527,6 +558,12 @@
 						<SIDREF>robot0_kinematics/kmodel0_inst/joint_hand/axis0</SIDREF>
 					</newparam>
 					<newparam sid="robot0_kinematics_kmodel0_inst_joint_hand_axis0_value">
+						<float>0</float>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_joint_ref_axis0">
+						<SIDREF>robot0_kinematics/kmodel0_inst/joint_ref/axis0</SIDREF>
+					</newparam>
+					<newparam sid="robot0_kinematics_kmodel0_inst_joint_ref_axis0_value">
 						<float>0</float>
 					</newparam>
 				</instance_kinematics_model>
@@ -595,13 +632,29 @@
 							</max>
 						</limits>
 					</axis_info>
+					<axis_info sid="axis_info_inst4" axis="kmodel0/joint_ref/axis0">
+						<active>
+							<bool>false</bool>
+						</active>
+						<locked>
+							<bool>false</bool>
+						</locked>
+						<limits>
+							<min>
+								<float>0</float>
+							</min>
+							<max>
+								<float>0</float>
+							</max>
+						</limits>
+					</axis_info>
 				</technique_common>
 			</kinematics>
 		</articulated_system>
 	</library_articulated_systems>
 	<library_kinematics_scenes id="kscenes">
 		<kinematics_scene id="kscene" name="URDF Kinematics Scene">
-			<instance_articulated_system sid="robot0_motion_inst" url="#robot0_motion" name="elir_test">
+			<instance_articulated_system sid="robot0_motion_inst" url="#robot0_motion" name="victory">
 				<bind symbol="kscene_kmodel0_inst">
 					<param ref="robot0_motion/robot0_motion_kmodel0_inst"/>
 				</bind>
@@ -629,6 +682,12 @@
 				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_joint_hand_axis0_value">
 					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_joint_hand_axis0_value"/>
 				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_joint_ref_axis0">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_joint_ref_axis0"/>
+				</bind>
+				<bind symbol="kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_joint_ref_axis0_value">
+					<param ref="robot0_motion/robot0_motion_robot0_kinematics_kmodel0_inst_joint_ref_axis0_value"/>
+				</bind>
 			</instance_articulated_system>
 		</kinematics_scene>
 	</library_kinematics_scenes>
@@ -640,6 +699,7 @@
 				<instance_rigid_body body="rigid2" target="#vkmodel0_node2"/>
 				<instance_rigid_body body="rigid3" target="#vkmodel0_node3"/>
 				<instance_rigid_body body="rigid4" target="#vkmodel0_node4"/>
+				<instance_rigid_body body="rigid5" target="#vkmodel0_node5"/>
 			</instance_physics_model>
 			<technique_common>
 				<gravity>0 0 0</gravity>
@@ -647,7 +707,7 @@
 		</physics_scene>
 	</library_physics_scenes>
 	<library_physics_models id="pmodels">
-		<physics_model id="pmodel0" name="elir_test">
+		<physics_model id="pmodel0" name="victory">
 			<rigid_body sid="rigid0" name="victory_hand">
 				<technique_common/>
 			</rigid_body>
@@ -661,6 +721,9 @@
 				<technique_common/>
 			</rigid_body>
 			<rigid_body sid="rigid4" name="victory_link3">
+				<technique_common/>
+			</rigid_body>
+			<rigid_body sid="rigid5" name="victory_ref">
 				<technique_common/>
 			</rigid_body>
 		</physics_model>
@@ -696,12 +759,20 @@
 					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_joint_2_axis0_value</param>
 				</value>
 			</bind_joint_axis>
-			<bind_joint_axis target="node1/node2/node3/node0/node_joint_hand_axis0">
+			<bind_joint_axis target="node1/node2/node3/node4/node0/node_joint_hand_axis0">
 				<axis>
 					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_joint_hand_axis0</param>
 				</axis>
 				<value>
 					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_joint_hand_axis0_value</param>
+				</value>
+			</bind_joint_axis>
+			<bind_joint_axis target="node1/node2/node3/node5/node_joint_ref_axis0">
+				<axis>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_joint_ref_axis0</param>
+				</axis>
+				<value>
+					<param>kscene_kmodel0_inst_robot0_kinematics_kmodel0_inst_joint_ref_axis0_value</param>
 				</value>
 			</bind_joint_axis>
 		</instance_kinematics_scene>

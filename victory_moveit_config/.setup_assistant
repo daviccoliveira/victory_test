@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: victory_description
+    relative_path: urdf/victory.urdf.xacro
+    xacro_args: "--inorder "
+  SRDF:
+    relative_path: config/victory.srdf
+  CONFIG:
+    author_name: davizera
+    author_email: davi.costa@hotmail.com
+    generated_timestamp: 1534422708
